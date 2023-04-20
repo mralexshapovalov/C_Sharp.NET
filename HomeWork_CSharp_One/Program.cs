@@ -89,8 +89,7 @@ namespace HomeWork_CSharp_One
 
                     if (numberMultipleThree != 0 && numberMultipleFive != 0)
                     {
-                        Console.Write("Число не кратное 3 и 5 - ");
-                        Console.WriteLine(number);//По заданию не понял какое нужно выести число
+                        Console.Write($"Число не кратное 3 и 5 - {number}");//По заданию не понял какое нужно выести число
                     }
                 }
 
@@ -100,27 +99,101 @@ namespace HomeWork_CSharp_One
             }
         }
 
-        static void TaskTwp()
+        static void TaskTwo()
         {
 
+            Console.Write("Введите число: ");
+            float value = Convert.ToSingle(Console.ReadLine());
+         
+
+            Console.Write("Введите процент числа: ");
+            float percent = Convert.ToSingle(Console.ReadLine());
+
+
+            float result = (Convert.ToSingle(value / 100)) * percent;
+            Console.WriteLine($"{percent} % от числа {value} = {result}") ;
         }
 
         static void TaskThree()
         {
+            Console.WriteLine("Введите c кдавиатуры 4 цифры");
+            int value,value1,value2,value3;
+
+            value  = Convert.ToInt32(Console.ReadLine());
+            value1 = Convert.ToInt32(Console.ReadLine());
+            value2 = Convert.ToInt32(Console.ReadLine());
+            value3 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine($"Число: {value}{value1}{value2}{value3}");
+
+
 
         }
         static void TaskFour()
         {
+
+
+            while(true)
+            {
+            
+                int selectAction=0;
+
+                Console.Write("Введите показания температуры: ");
+                int valueTemperature = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("1)Перевести температуру из Фаренгейта в Цельсий\n" +
+                                   "2)Перевести температуры из Цельсий в Фаренгейт");
+
+
+
+
+
+                switch(selectAction=Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+
+
+                        double С=(5/9*(Convert.ToInt32(valueTemperature)-32));
+                        
+
+                        Console.WriteLine(С);
+                        break;
+
+                        case 2:
+                        double F = 9 / 5 *132 + 32;
+                        
+                        Console.WriteLine(F);
+
+
+                        break;
+
+                    default:
+                        Console.WriteLine("Ошибка");
+                        break;
+
+                }
+
+
+            }
+
+           
+
+
+
+
+
 
         }
         static void TaskFive()
         {
 
         }
+
         static void TaskSix()
         {
 
         }
+
         static void TaskSeven()
         {
 
@@ -133,7 +206,11 @@ namespace HomeWork_CSharp_One
 
         static void Main(string[] args)
         {
-            TaskOne();
+            // TaskOne();
+
+            //TaskTwo();
+
+            TaskFour();
         }
     }
 }
