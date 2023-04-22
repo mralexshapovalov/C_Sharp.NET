@@ -3,7 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.ExceptionServices;
+using System.Data.SqlTypes;
+using System.Diagnostics.Eventing.Reader;
 
 
 #if Task
@@ -70,7 +73,7 @@ namespace HomeWork_CSharp_One
                 if (number >= 1 && number <= 100)
                 {
                     int numberMultipleThree = number % 3;
-                    int numberMultipleFive  = number % 5;
+                    int numberMultipleFive = number % 5;
 
                     if (numberMultipleThree == 0 && numberMultipleFive == 0)
                     {
@@ -104,81 +107,45 @@ namespace HomeWork_CSharp_One
 
             Console.Write("Введите число: ");
             float value = Convert.ToSingle(Console.ReadLine());
-         
+
 
             Console.Write("Введите процент числа: ");
             float percent = Convert.ToSingle(Console.ReadLine());
 
 
             float result = (Convert.ToSingle(value / 100)) * percent;
-            Console.WriteLine($"{percent} % от числа {value} = {result}") ;
+            Console.WriteLine($"{percent} % от числа {value} = {result}");
         }
 
         static void TaskThree()
         {
             Console.WriteLine("Введите c кдавиатуры 4 цифры");
-            int value,value1,value2,value3;
+            int value, value1, value2, value3;
 
-            value  = Convert.ToInt32(Console.ReadLine());
+            value = Convert.ToInt32(Console.ReadLine());
             value1 = Convert.ToInt32(Console.ReadLine());
             value2 = Convert.ToInt32(Console.ReadLine());
             value3 = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine($"Число: {value}{value1}{value2}{value3}");
-
-
-
         }
+
         static void TaskFour()
         {
+            Console.Write("Введите 6-ти значное число : ");
 
+            int[] arr = new int[6];
 
-            while(true)
-            {
             
-                int selectAction=0;
-
-                Console.Write("Введите показания температуры: ");
-                int valueTemperature = Convert.ToInt32(Console.ReadLine());
-
-                Console.WriteLine("1)Перевести температуру из Фаренгейта в Цельсий\n" +
-                                   "2)Перевести температуры из Цельсий в Фаренгейт");
-
-
-
-
-
-                switch(selectAction=Convert.ToInt32(Console.ReadLine()))
-                {
-                    case 1:
-
-
-                        double С=(5/9*(Convert.ToInt32(valueTemperature)-32));
-                        
-
-                        Console.WriteLine(С);
-                        break;
-
-                        case 2:
-                        double F = 9 / 5 *132 + 32;
-                        
-                        Console.WriteLine(F);
-
-
-                        break;
-
-                    default:
-                        Console.WriteLine("Ошибка");
-                        break;
-
-                }
-
-
+            for (int i=1;i<=arr.Length;i++)
+            {
+                arr[i] = Convert.ToInt32(Console.ReadLine());
             }
 
-           
-
-
+            for (int i = 1; i <= arr.Length; i++)
+            {
+                Console.Write(arr[i]);
+            }
 
 
 
@@ -186,23 +153,153 @@ namespace HomeWork_CSharp_One
         }
         static void TaskFive()
         {
+            int day, month, year;
+
+
+            string day1 = "Понедельник" , day2 = "Вторник", 
+                   day3 = "Среда", day4 = "Четверг", day5 = "Пятница", day6 = "Суббота", day7 = "Воскресенье";
+
+
+
+
+
+
+
+            day = Convert.ToInt32(Console.ReadLine());
+            month = Convert.ToInt32(Console.ReadLine());
+            //year = Convert.ToInt32(Console.ReadLine());
+
+            string[] arr = { "Понеделбник", "Вторник", "Среда" };
+
+            for (int i = 1; i <= 365; i++)
+            {
+                Console.WriteLine(i++ +day1);
+                Console.WriteLine(i++ + day2);
+                Console.WriteLine(i++ + day3);
+                Console.WriteLine(i++ + day4);
+                Console.WriteLine(i++ + day5);
+                Console.WriteLine(i++ + day6);
+                Console.WriteLine(i++ + day7);
+
+
+
+                if(i==365)
+                {
+                    break;
+                }
+
+            }
+
+
+            if (month == 1 || month == 2 || month == 12)
+            {
+                Console.Write("Winter");
+            }
+
+            if (month == 3 || month == 4 || month == 5)
+            {
+                Console.Write("Spring");
+            }
+
+            if (month == 6 || month == 7 || month == 8)
+            {
+                Console.Write("Summer");
+            }
+
+            if (month == 9 || month == 10 || month == 11)
+            {
+                Console.Write("Autumn");
+            }
+
+            if (month == 0 || month >= 13)
+            {
+                Console.WriteLine("Ошибка!Неверно указан месяц.Повторите снова");
+            }
+
+
+
+
+
+
+
+
+
+
+
 
         }
 
         static void TaskSix()
         {
+            int selectAction, valueTemperature;
+            float celsius, farenheint;
 
+
+            while (true)
+            {
+                Console.Write("Введите показания температуры: ");
+                valueTemperature = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("1)Перевести температуру из Фаренгейта в Цельсий\n" +
+                                  "2)Перевести температуры из Цельсий в Фаренгейт");
+
+                switch (selectAction = Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        celsius = 0.5556f * (valueTemperature - 32);
+                        Console.WriteLine($"Из Фаренгейта в Цельсий - {Math.Round(celsius, 2)}C\n");
+                        break;
+
+                    case 2:
+                        farenheint = 1.8f * valueTemperature + 32;
+                        Console.WriteLine($"Из Цельсий в Фаренгейт - {farenheint}F\n");
+                        break;
+
+                    default:
+                        Console.WriteLine("Ошибка!Повторите снова");
+                        break;
+                }
+
+            }
         }
 
         static void TaskSeven()
         {
+            int valueOne, valueTwo, minValue = 0, maxValue = 0;
+
+            Console.WriteLine("Введите диапазон значений:");
+
+            valueOne = Convert.ToInt32(Console.ReadLine());
+            valueTwo = Convert.ToInt32(Console.ReadLine());
+
+            if (valueOne < valueTwo)
+            {
+                minValue = valueOne;
+                maxValue = valueTwo;
+            }
+
+            if (valueOne > valueTwo)
+            {
+                minValue = valueTwo;
+                maxValue = valueOne;
+            }
+
+            Console.Write($"Все четные числа в диапазоне от {minValue} до {maxValue} : ");
+
+            while (minValue <= maxValue)
+            {
+                int numberMultipleThree = minValue % 2;
+
+                if (numberMultipleThree == 0)
+                {
+                    Console.Write(minValue + "\t");
+                }
+
+                minValue++;
+
+            }
 
         }
-
-
-
-
-
 
         static void Main(string[] args)
         {
@@ -210,6 +307,7 @@ namespace HomeWork_CSharp_One
 
             //TaskTwo();
 
+            //
             TaskFour();
         }
     }
