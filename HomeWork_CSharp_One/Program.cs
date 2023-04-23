@@ -132,31 +132,50 @@ namespace HomeWork_CSharp_One
             {
                 Console.Write("Введите 6-ти значное число : ");
 
-                int number = int.Parse(Console.ReadLine());//Parse преборазует строку к числу 32-битовое число со знаком
+                int i = 0, valueOne, valueTwo;
+                char charContainerOne, charContainerTwo;
 
-                int firstNumber = 0, 
-                    counter = 0,
-                    lastNumber = number % 100/10,
-                    temp = number;
-              
-                while (temp != 0)
+                string number = Console.ReadLine();//Parse преборазует строку к числу 32-битовое число со знаком
+                char[] numberArray = number.ToCharArray(); //Копирует знаки данного экземпляра в массив знаков Юникода.
+
+                int tempValue = Convert.ToInt32(number);
+
+                while (tempValue != 0)
                 {
-                    firstNumber = temp % 10;
-                    temp = temp / 10;
-                    counter++;
-                }
-               
-                if (counter >7)
-                {
-                    Console.WriteLine($"Ошибка!Вы ввели число {number} .Оно превышает больше 6-ти знанчений.Введите число снова");
-                }
-                else
+                    tempValue /=  10;
 
-                    counter--;
-                    number -= firstNumber * (int)Math.Pow(10, counter) + lastNumber;
-                    number += lastNumber * (int)Math.Pow(10, counter) + firstNumber;
-                    Console.WriteLine(number.ToString());
+                    i++;
 
+                    if (i >= 7)
+                    {
+                        Console.WriteLine($"Ошибка!Вы ввели число {number} .Оно превышает больше 6-ти знанчений.Введите число снова");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Какие цифры поменять местами?:");
+
+                         valueOne = Convert.ToInt32(Console.ReadLine());
+                         valueTwo = Convert.ToInt32(Console.ReadLine());
+
+
+                        if ((valueOne > 7 || 0 == valueOne) || (valueTwo > 7 || 0 == valueTwo))
+                        {
+                            Console.WriteLine("Ошибка!Неправильно указан диапазон значений.Повторите снова");
+                        }
+                        else
+                        {
+
+                            charContainerOne = numberArray[valueOne - 1];
+                            charContainerTwo = numberArray[valueTwo - 1];
+
+                            numberArray[valueOne - 1] = charContainerOne;
+                            numberArray[valueTwo - 1] = charContainerTwo;
+
+                            Console.WriteLine(numberArray);
+                        }
+                    }
+                }
             }
         }
 
@@ -282,7 +301,9 @@ namespace HomeWork_CSharp_One
 
         static void Main(string[] args)
         {
-            int value = 0;
+
+            int value;
+
             while (true)
             {
                 Console.Write(
