@@ -134,34 +134,30 @@ namespace HomeWork_CSharp_One
 
                 int number = int.Parse(Console.ReadLine());//Parse преборазует строку к числу 32-битовое число со знаком
 
-                int temp = number;
-                int counter = 0;
-                int lastNumber = number % 10;
-                int firstNumber = 0;
-
+                int firstNumber = 0, 
+                    counter = 0,
+                    lastNumber = number % 100/10,
+                    temp = number;
+              
                 while (temp != 0)
                 {
                     firstNumber = temp % 10;
                     temp = temp / 10;
                     counter++;
                 }
-                counter--;
-
-                if (counter >= 6)
+               
+                if (counter >7)
                 {
                     Console.WriteLine($"Ошибка!Вы ввели число {number} .Оно превышает больше 6-ти знанчений.Введите число снова");
                 }
                 else
 
+                    counter--;
                     number -= firstNumber * (int)Math.Pow(10, counter) + lastNumber;
-                number += lastNumber * (int)Math.Pow(10, counter) + firstNumber;
-                Console.WriteLine(number.ToString());
+                    number += lastNumber * (int)Math.Pow(10, counter) + firstNumber;
+                    Console.WriteLine(number.ToString());
 
             }
-
-
-
-
         }
 
         static void TaskFive()
@@ -281,14 +277,12 @@ namespace HomeWork_CSharp_One
                 }
 
                 minValue++;
-
             }
         }
 
         static void Main(string[] args)
         {
-            int value = 0;
-
+ 
             while (true)
             {
                 Console.Write(
@@ -328,6 +322,8 @@ namespace HomeWork_CSharp_One
                         Console.WriteLine("Ошибка!Неверно указн номер.Повторите снова");
                         break;
                 }
+
+               
             }
         }
     }
