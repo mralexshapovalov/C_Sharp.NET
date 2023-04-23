@@ -8,6 +8,7 @@ using System.Runtime.ExceptionServices;
 using System.Data.SqlTypes;
 using System.Diagnostics.Eventing.Reader;
 using System.Security.Cryptography.X509Certificates;
+using System.Net.Http.Headers;
 
 
 #if Task
@@ -61,7 +62,6 @@ namespace HomeWork_CSharp_One
 {
     class Program
     {
-
         static void TaskOne()
         {
             bool isRemember = true;
@@ -96,23 +96,18 @@ namespace HomeWork_CSharp_One
                         Console.Write($"Число не кратное 3 и 5 - {number}");//По заданию не понял какое нужно выести число
                     }
                 }
-
                 else
                     Console.WriteLine("Ошибка!Данное число не в диапазоне.Повторите снова");
-
             }
         }
 
         static void TaskTwo()
         {
-
             Console.Write("Введите число: ");
             float value = Convert.ToSingle(Console.ReadLine());
 
-
             Console.Write("Введите процент числа: ");
             float percent = Convert.ToSingle(Console.ReadLine());
-
 
             float result = (Convert.ToSingle(value / 100)) * percent;
             Console.WriteLine($"{percent} % от числа {value} = {result}");
@@ -133,63 +128,56 @@ namespace HomeWork_CSharp_One
 
         static void TaskFour()
         {
-            Console.Write("Введите 6-ти значное число : ");
-
-            //int[] arr = new int[6];
-
-
-            //for (int i = 1; i <= arr.Length; i++)
-            //{
-            //    arr[i] = Convert.ToInt32(Console.ReadLine());
-            //}
-
-            //for (int i = 1; i <= arr.Length; i++)
-            //{
-            //    Console.Write(arr[i]);
-            //}
-
-            //int number = int.Parse(Console.ReadLine());
-
-            //while (number != 0)
-            //{
-            //    Console.Write(number % 10+"\t");
-            //    number /= 10;   
-            //}
-
-            int n = int.Parse(Console.ReadLine());
-            int temp = n;
-            int power = 0;
-            int last = n % 10;
-            int first = 0;
-            while (temp != 0)
+            while (true)
             {
-                first = temp % 100;
-                temp = temp / 10;
-                power += 1;
+                Console.Write("Введите 6-ти значное число : ");
+
+                int number = int.Parse(Console.ReadLine());//Parse преборазует строку к числу 32-битовое число со знаком
+
+                int temp = number;
+                int counter = 0;
+                int lastNumber = number % 10;
+                int firstNumber = 0;
+
+                while (temp != 0)
+                {
+                    firstNumber = temp % 10;
+                    temp = temp / 10;
+                    counter++;
+                }
+                counter--;
+
+                if (counter >= 6)
+                {
+                    Console.WriteLine($"Ошибка!Вы ввели число {number} .Оно превышает больше 6-ти знанчений.Введите число снова");
+                }
+                else
+
+                    number -= firstNumber * (int)Math.Pow(10, counter) + lastNumber;
+                number += lastNumber * (int)Math.Pow(10, counter) + firstNumber;
+                Console.WriteLine(number.ToString());
+
             }
-            power -= 1;
-            n -= 2 * (int)Math.Pow(10, power) + 5;
-            n += 5 * (int)Math.Pow(10, power) + 2;
-            Console.WriteLine(n.ToString());
-          
+
+
 
 
         }
-    
+
         static void TaskFive()
         {
-
             bool isDay = true;
 
             while (isDay)
             {
-                string t = "";
                 Console.Write("Введите дату через пробел :");
-                t = Console.ReadLine();
+                string line = Console.ReadLine();
 
-                string[] tv = t.Split('.').Where(x => x != "").ToArray();
-                int day = int.Parse(tv[0]), month = int.Parse(tv[1]), year = int.Parse(tv[2]);
+                string[] lineArray = line.Split('.').Where(x => x != "").ToArray();
+                //Split предназначен для разделения строки
+                //Where использование последовательность значений
 
+                int day = int.Parse(lineArray[0]), month = int.Parse(lineArray[1]), year = int.Parse(lineArray[2]);
 
                 if (day == 0 || day >= 32)
                 {
@@ -225,7 +213,7 @@ namespace HomeWork_CSharp_One
                     var startDay = new DateTime(year, month, day);
                     Console.WriteLine($"{startDay.DayOfWeek}");
                 }
-            }  
+            }
         }
 
         static void TaskSix()
@@ -233,32 +221,30 @@ namespace HomeWork_CSharp_One
             int selectAction, valueTemperature;
             float celsius, farenheint;
 
-
             while (true)
             {
                 Console.Write("Введите показания температуры: ");
                 valueTemperature = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("1)Перевести температуру из Фаренгейта в Цельсий\n" +
+                Console.WriteLine("1)Перевести температуру из Фаренгейта в Цельсий\number" +
                                   "2)Перевести температуры из Цельсий в Фаренгейт");
 
                 switch (selectAction = Convert.ToInt32(Console.ReadLine()))
                 {
                     case 1:
                         celsius = 0.5556f * (valueTemperature - 32);
-                        Console.WriteLine($"Из Фаренгейта в Цельсий - {Math.Round(celsius, 2)}C\n");
+                        Console.WriteLine($"Из Фаренгейта в Цельсий - {Math.Round(celsius, 2)}C\number");
                         break;
 
                     case 2:
                         farenheint = 1.8f * valueTemperature + 32;
-                        Console.WriteLine($"Из Цельсий в Фаренгейт - {farenheint}F\n");
+                        Console.WriteLine($"Из Цельсий в Фаренгейт - {farenheint}F\number");
                         break;
 
                     default:
                         Console.WriteLine("Ошибка!Повторите снова");
                         break;
                 }
-
             }
         }
 
@@ -297,17 +283,52 @@ namespace HomeWork_CSharp_One
                 minValue++;
 
             }
-
         }
 
         static void Main(string[] args)
         {
-            // TaskOne();
+            int value = 0;
 
-            //TaskTwo();
+            while (true)
+            {
+                Console.Write(
+                   "1)Задание 1\n" +
+                   "2)Задание 2\n" +
+                   "3)Задание 3\n" +
+                   "4)Задание 4\n" +
+                   "5)Задание 5\n" +
+                   "6)Задание 6\n" +
+                   "7)Задание 7\n" +
+                   "Введите число :");
 
-            //
-            TaskFour();
+                switch (value = Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        TaskOne();
+                        break;
+                    case 2:
+                        TaskTwo();
+                        break;
+                    case 3:
+                        TaskThree();
+                        break;
+                    case 4:
+                        TaskFour();
+                        break;
+                    case 5:
+                        TaskFive();
+                        break;
+                    case 6:
+                        TaskSix();
+                        break;
+                    case 7:
+                        TaskSeven();
+                        break;
+                    default:
+                        Console.WriteLine("Ошибка!Неверно указн номер.Повторите снова");
+                        break;
+                }
+            }
         }
     }
 }
