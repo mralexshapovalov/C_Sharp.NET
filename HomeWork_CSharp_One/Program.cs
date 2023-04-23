@@ -7,6 +7,7 @@ using System.IO;
 using System.Runtime.ExceptionServices;
 using System.Data.SqlTypes;
 using System.Diagnostics.Eventing.Reader;
+using System.Security.Cryptography.X509Certificates;
 
 
 #if Task
@@ -134,99 +135,97 @@ namespace HomeWork_CSharp_One
         {
             Console.Write("Введите 6-ти значное число : ");
 
-            int[] arr = new int[6];
+            //int[] arr = new int[6];
 
-            
-            for (int i=1;i<=arr.Length;i++)
+
+            //for (int i = 1; i <= arr.Length; i++)
+            //{
+            //    arr[i] = Convert.ToInt32(Console.ReadLine());
+            //}
+
+            //for (int i = 1; i <= arr.Length; i++)
+            //{
+            //    Console.Write(arr[i]);
+            //}
+
+            //int number = int.Parse(Console.ReadLine());
+
+            //while (number != 0)
+            //{
+            //    Console.Write(number % 10+"\t");
+            //    number /= 10;   
+            //}
+
+            int n = int.Parse(Console.ReadLine());
+            int temp = n;
+            int power = 0;
+            int last = n % 10;
+            int first = 0;
+            while (temp != 0)
             {
-                arr[i] = Convert.ToInt32(Console.ReadLine());
+                first = temp % 100;
+                temp = temp / 10;
+                power += 1;
             }
-
-            for (int i = 1; i <= arr.Length; i++)
-            {
-                Console.Write(arr[i]);
-            }
-
-
+            power -= 1;
+            n -= 2 * (int)Math.Pow(10, power) + 5;
+            n += 5 * (int)Math.Pow(10, power) + 2;
+            Console.WriteLine(n.ToString());
+          
 
 
         }
+    
         static void TaskFive()
         {
-            int day, month, year;
 
+            bool isDay = true;
 
-            string day1 = "Понедельник" , day2 = "Вторник", 
-                   day3 = "Среда", day4 = "Четверг", day5 = "Пятница", day6 = "Суббота", day7 = "Воскресенье";
-
-
-
-
-
-
-
-            day = Convert.ToInt32(Console.ReadLine());
-            month = Convert.ToInt32(Console.ReadLine());
-            //year = Convert.ToInt32(Console.ReadLine());
-
-            string[] arr = { "Понеделбник", "Вторник", "Среда" };
-
-            for (int i = 1; i <= 365; i++)
+            while (isDay)
             {
-                Console.WriteLine(i++ +day1);
-                Console.WriteLine(i++ + day2);
-                Console.WriteLine(i++ + day3);
-                Console.WriteLine(i++ + day4);
-                Console.WriteLine(i++ + day5);
-                Console.WriteLine(i++ + day6);
-                Console.WriteLine(i++ + day7);
+                string t = "";
+                Console.Write("Введите дату через пробел :");
+                t = Console.ReadLine();
+
+                string[] tv = t.Split('.').Where(x => x != "").ToArray();
+                int day = int.Parse(tv[0]), month = int.Parse(tv[1]), year = int.Parse(tv[2]);
 
 
-
-                if(i==365)
+                if (day == 0 || day >= 32)
                 {
-                    break;
+                    Console.WriteLine("Ошибка!Неверно указана дата.Повторите снова");
                 }
+                else
+                {
+                    if (month == 1 || month == 2 || month == 12)
+                    {
+                        Console.Write("Winter ");
+                    }
 
-            }
+                    if (month == 3 || month == 4 || month == 5)
+                    {
+                        Console.Write("Spring ");
+                    }
 
+                    if (month == 6 || month == 7 || month == 8)
+                    {
+                        Console.Write("Summer ");
+                    }
 
-            if (month == 1 || month == 2 || month == 12)
-            {
-                Console.Write("Winter");
-            }
+                    if (month == 9 || month == 10 || month == 11)
+                    {
+                        Console.Write("Autumn ");
+                    }
 
-            if (month == 3 || month == 4 || month == 5)
-            {
-                Console.Write("Spring");
-            }
+                    if (month == 0 || month >= 13)
+                    {
+                        Console.WriteLine("Ошибка!Неверно указан месяц.Повторите снова");
+                    }
 
-            if (month == 6 || month == 7 || month == 8)
-            {
-                Console.Write("Summer");
-            }
-
-            if (month == 9 || month == 10 || month == 11)
-            {
-                Console.Write("Autumn");
-            }
-
-            if (month == 0 || month >= 13)
-            {
-                Console.WriteLine("Ошибка!Неверно указан месяц.Повторите снова");
-            }
-
-
-
-
-
-
-
-
-
-
-
-
+                    var startDay = new DateTime(year, month, day);
+                    Console.WriteLine($"{startDay.DayOfWeek}");
+                }
+            }  
         }
 
         static void TaskSix()
