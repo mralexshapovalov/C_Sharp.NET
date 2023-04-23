@@ -282,7 +282,7 @@ namespace HomeWork_CSharp_One
 
         static void Main(string[] args)
         {
- 
+            int value = 0;
             while (true)
             {
                 Console.Write(
