@@ -94,6 +94,7 @@ namespace HomeWork_CSharp_Two
             int maxValue = 0;
 
             int sum = 0;
+            int result = 0;
 
 
             for (int i=0; i<A.Length; i++)
@@ -170,28 +171,34 @@ namespace HomeWork_CSharp_Two
             minValue = B[0,0];
 
             for (int i = 0; i < B.GetLength(0); i++)
-            
-                for (int j = 0; j < B.GetLength(1); j++)
-                
+            {
 
+                for (int j = 0; j < B.GetLength(1); j++)
+                {
                     //Console.Write(B[i, j] + "\t");
                     //sum += B[i, j];
 
 
-                    //if (B[i,j] < minValue)
-                    
-
-                    //    minValue = B[i, j];
-
-                    if (B[i,j] > maxValue)
+                    if (B[i, j] < minValue)
 
 
-                      maxValue = B[i, j];
-                   
+                        minValue = B[i, j];
 
-                
-                
-            
+                    if (B[i, j] > maxValue)
+
+
+                        maxValue = B[i, j];
+
+                }
+
+
+            }
+
+
+
+
+
+
             Console.WriteLine("Минимальное значение " + minValue);
             Console.WriteLine("Максимальное значени " + maxValue);
             Console.WriteLine();
