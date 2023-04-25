@@ -1,6 +1,7 @@
 ﻿//#define TEST
 //#define ARRAYS
 //#define STRING
+//#define SQRT
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,14 @@ namespace NN
 {
     class MyClass
     {
-        MyClass_1 myClass =new MyClass_1();
+        MyClass_1 myClass = new MyClass_1();
         int x_1 = MyClass_1.x;
         int y_1 = MyClass_1.y;
     }
 
     class MyClass_1
     {
-        public static int x= 0;
+        public static int x = 0;
         public const int y = 0;
     }
 }
@@ -27,7 +28,7 @@ namespace NN
 namespace C_Sharp
 {
 
-   
+
 
     internal class Program
     {
@@ -37,10 +38,22 @@ namespace C_Sharp
 
         }
 
+        struct Point
+        {
+            public double x;
+            public double y;
+        }
+
         enum MyEnum
         {
-            red=10,blue=4500, green=41
+            red = 10, blue = 4500, green = 41
         }
+
+        enum DayOfWeek
+        {
+            Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+        }
+
 
 
         static void Main(string[] args)
@@ -226,7 +239,6 @@ namespace C_Sharp
             }
 
             Console.WriteLine(sb.ToString()); 
-#endif
 
 
             string str = Console.ReadLine();
@@ -256,9 +268,125 @@ namespace C_Sharp
 
             }
      
+#endif
+            //            string strdayOfWeek = " ";
+            //            int callDuration = 0;
+            //            double cost = 0;
+
+            //            const double k = 3.5;
+
+            //            Console.WriteLine("Введите день недели ->");
+            //            strdayOfWeek = Console.ReadLine();
+
+
+            //            Console.WriteLine("Введите продолжительность (мин)->");
+            //            callDuration = Convert.ToInt16(Console.ReadLine());
+
+            //            DayOfWeek dayOfWeek = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), strdayOfWeek);
+
+            //            switch (dayOfWeek)
+            //            {
+
+
+            //                  DayOfWeek.Monday:
+            //                case DayOfWeek.Tuesday:
+            //                case DayOfWeek.Wednesday:
+            //                case DayOfWeek.Thursday:
+            //                case DayOfWeek.Friday:
+            //             cost = callDuration * k;
+            //            Console.WriteLine($"Croumocts 380HKa -> {cost}\n"); ;
+
+            //            case DayOfWeek.Saturday:
+            //            case DayOfWeek.Sunday:
+            //            cost = callDuration * K * 0.8;
+            //            Console.WriteLine($"Croumoctb 3B0HKa co ckupkoli-> {cost}\n"); ;
+            //            break;
+            //            default:
+            //Console.WriteLine("HesepoatHan ow“6Ka");
+            //            break;
 
 
 
+
+            //        }
+
+
+#if SQRT
+            Point B = new Point();
+
+            Console.WriteLine("Введите координаты точки ");
+            Console.Write("x-");
+            B.x = double.Parse(Console.ReadLine());
+
+            Console.Write("x-");
+            B.y = double.Parse(Console.ReadLine());
+
+            double f = 0;
+
+            if (Math.Abs(B.x) > 1)
+            {
+                f = Math.Pow(Math.Sin(Math.Pow(B.x, 3)), 2);
+            }
+            else if (Math.Abs(B.x) <= 1)
+            {
+                f = Math.Sqrt(6 * Math.Asin(Math.Pow(B.x, 7)) +
+                    4.5F * Math.Pow(B.x, 6) +
+                    4D * Math.Pow(B.x, 2) + 2);
+            }
+            else
+            {
+                Console.WriteLine("Ошибка!");
+            }
+            if (Math.Abs(f - B.y) < Math.Pow(10, -3))
+
+                Console.WriteLine($"f(x) - {f}, где погрешность < ,eps");
+
+            else
+                Console.WriteLine($"f(x) - {f}, где погрешность > ,eps");
+
+#endif
+
+            int[] array = new int[20];
+
+            Random random = new Random();
+
+            for(int i=0;i<array.Length;i++)
+            {
+                array[i] = random.Next(0, 11);
+            }
+
+            Console.WriteLine("Входной массив ->");
+
+            for(int i=0;i<array.Length;i++)
+            {
+                Console.Write(array[i]);
+                Console.Write(" ");
+            }
+
+            //Среднее арифметическое
+            double sr=0;
+            for (int i = 0; i < array.Length; i++)
+            
+                sr+=array[i];
+            sr /= array.Length;
+
+
+            int count = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (sr < array[i])
+                    count++;
+
+            }
+
+            //Нахждения процентного отношения
+
+            Single per = count / array.Length * 100;
+
+            Console.WriteLine($"Процентное  отношение -> {per}");
+
+               
         }
     }
 }
+
