@@ -89,21 +89,21 @@ namespace HomeWork_CSharp_Two
             Random random = new Random();
 
             int[] A = new int[5];
-            int[,] B = new int[3, 4];
+            double[,] B = new double[3, 4];
 
-            int minValue = 0, maxValue = 0,sumElement=0,remainderDivision=0,compositionElement=1;
+            double minValue = 0, maxValue = 0,sumElement=0,remainderDivision=0,compositionElement=1;
 
             Console.WriteLine("Заполните массив :");
             for (int i = 0; i < A.Length; i++)
             {
                 A[i] = int.Parse(Console.ReadLine());
 
-                if (A[i] < A[minValue])
+                if (A[i] < A[(int)minValue])
                 {
                     minValue = i;
                 }
 
-                if (A[i] > A[maxValue])
+                if (A[i] > A[(int)maxValue])
                 {
                     maxValue = i;
                 }
@@ -124,29 +124,32 @@ namespace HomeWork_CSharp_Two
             }
 
             Console.WriteLine();
-            Console.WriteLine($"Минимальное значение : {A[minValue]} ячейка A[{minValue}]");
-            Console.WriteLine($"Минимальное значение : {A[maxValue]} ячейка A[{maxValue}]");
+            Console.WriteLine($"Минимальное значение : {A[(int)minValue]} ячейка A[{minValue}]");
+            Console.WriteLine($"Минимальное значение : {A[(int)maxValue]} ячейка A[{maxValue}]");
             Console.WriteLine($"Сумма элементов в массиве : {sumElement}");
             Console.WriteLine($"Произведение элементов: {compositionElement}");
             Console.WriteLine($"Сумма четных элементов массива :{remainderDivision}");
 
-            minValue = B[0, 0];
+            minValue= B[0, 0]; 
+          
             maxValue = B[0, 0];
             sumElement = 0;
             compositionElement = 1;
             remainderDivision = 0;
 
 
-            for (int i=0;i<B.GetLength(0);i++)
+            for (int i = 0; i < B.GetLength(0); i++)
             {
-                for(int j=0;j<B.GetLength(1);j++)
+                for (int j = 0; j < B.GetLength(1); j++)
                 {
-                    B[i, j] = random.Next(0, 100);
+                    B[i, j] = random.NextDouble() * 100;
 
                     if (B[i, j] < minValue)
-                    {
-                        minValue = B[i,j];
-                    }
+
+                        minValue = j;
+
+
+
 
                     if (B[i, j] > maxValue)
                     {
@@ -158,34 +161,33 @@ namespace HomeWork_CSharp_Two
 
                 }
             }
+            Console.WriteLine();
 
             for (int i = 0; i < B.GetLength(0); i++)
             {
                 for (int j = 0; j < B.GetLength(1); j++)
                 {
-                    Console.Write(B[i,j]+"\t");
+                    Console.Write("{0,6:F2}", B[i, j]);
                 }
                 Console.WriteLine();
             }
 
             Console.WriteLine();
-            Console.WriteLine($"Минимальное значение : {minValue} ячейка B[{minValue}]");
-            Console.WriteLine($"Минимальное значение : {maxValue} ячейка B[{maxValue}]");
-            Console.WriteLine($"Сумма элементов в массиве : {sumElement}");
-            Console.WriteLine($"Произведение элементов: {compositionElement}");
+            Console.WriteLine($"Минимальное значение :  ячейка B[]");
+            Console.WriteLine($"Максимальный элемент :  {Math.Round(maxValue,2)}");
+            Console.WriteLine($"Сумма элементов в массиве : {Math.Round(sumElement, 2)}");
+            Console.WriteLine("Произведение элементов: ",compositionElement);
             Console.WriteLine($"Сумма четных элементов массива :{remainderDivision}");
-
-
-
 
 
         }
 
 
         void TaskTwo()
-        {
-
-        }
+       {
+            
+        
+       }
 
         void TaskThree()
         {
