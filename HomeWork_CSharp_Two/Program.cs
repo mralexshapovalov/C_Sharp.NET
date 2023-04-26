@@ -142,7 +142,11 @@ namespace HomeWork_CSharp_Two
             {
                 for (int j = 0; j < B.GetLength(1); j++)
                 {
+
+                    
                     B[i, j] = random.NextDouble() * 100;
+
+
 
                     if (B[i, j] < minValue)
 
@@ -156,8 +160,18 @@ namespace HomeWork_CSharp_Two
                         maxValue = B[i, j];
                     }
 
+
+
                     sumElement += B[i, j];
                     compositionElement *= B[i, j];
+
+
+                    if (j % 3 !=0)
+                    {
+                        remainderDivision += B[i, j];
+                    }
+
+
 
                 }
             }
@@ -167,7 +181,7 @@ namespace HomeWork_CSharp_Two
             {
                 for (int j = 0; j < B.GetLength(1); j++)
                 {
-                    Console.Write("{0,6:F2}", B[i, j]);
+                    Console.Write(Math.Round(B[i, j],2)+"\t");
                 }
                 Console.WriteLine();
             }
@@ -176,7 +190,7 @@ namespace HomeWork_CSharp_Two
             Console.WriteLine($"Минимальное значение :  ячейка B[]");
             Console.WriteLine($"Максимальный элемент :  {Math.Round(maxValue,2)}");
             Console.WriteLine($"Сумма элементов в массиве : {Math.Round(sumElement, 2)}");
-            Console.WriteLine("Произведение элементов: ",compositionElement);
+            Console.WriteLine($"Произведение элементов: ,{ Math.Round(compositionElement, 2)}");
             Console.WriteLine($"Сумма четных элементов массива :{remainderDivision}");
 
 
