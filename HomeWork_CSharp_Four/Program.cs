@@ -4,32 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
-
-namespace HomeWork_CSharp_Three
+namespace HomeWork_CSharp_Four
 {
     internal class Program
     {
         static void TaskOne()
         {
-      
+
 
         }
 
 
         static void TaskTwo()
-        {
-            
-
-
-
-
-
+        { 
 
         }
 
-      
+
 
 
         static void TaskThree()
@@ -39,27 +30,14 @@ namespace HomeWork_CSharp_Three
 
         void TaskFour()
         {
-            
-        }
-
-        void TaskFive()
-        {
 
         }
 
-        void TaskSix()
-        {
-
-        }
-
-        void TaskSeven()
-        {
-
-        }
-
+        
 
         static void Main(string[] args)
         {
+
 
         }
     }

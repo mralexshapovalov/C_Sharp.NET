@@ -91,7 +91,7 @@ namespace HomeWork_CSharp_Two
             int[] A = new int[5];
             double[,] B = new double[3, 4];
 
-            double minValue = 0, maxValue = 0,sumElement=0,remainderDivision=0,compositionElement=1;
+            double minValue = 0, maxValue = 0, sumElement = 0, remainderDivision = 0, compositionElement = 1;
 
             Console.WriteLine("Заполните массив :");
             for (int i = 0; i < A.Length; i++)
@@ -108,7 +108,7 @@ namespace HomeWork_CSharp_Two
                     maxValue = i;
                 }
 
-                if(A[i]%2 ==0)
+                if (A[i] % 2 == 0)
                 {
                     remainderDivision += A[i];
                 }
@@ -118,7 +118,7 @@ namespace HomeWork_CSharp_Two
 
             }
 
-            for(int i=0;i<A.Length;i++)
+            for (int i = 0; i < A.Length; i++)
             {
                 Console.Write(A[i] + "\t");
             }
@@ -130,87 +130,303 @@ namespace HomeWork_CSharp_Two
             Console.WriteLine($"Произведение элементов: {compositionElement}");
             Console.WriteLine($"Сумма четных элементов массива :{remainderDivision}");
 
-            minValue= B[0, 0]; 
-          
-            maxValue = B[0, 0];
             sumElement = 0;
             compositionElement = 1;
             remainderDivision = 0;
-
 
             for (int i = 0; i < B.GetLength(0); i++)
             {
                 for (int j = 0; j < B.GetLength(1); j++)
                 {
-
-                    
                     B[i, j] = random.NextDouble() * 100;
-
-
-
-                    if (B[i, j] < minValue)
-
-                        minValue = j;
-
-
-
-
-                    if (B[i, j] > maxValue)
-                    {
-                        maxValue = B[i, j];
-                    }
-
 
 
                     sumElement += B[i, j];
                     compositionElement *= B[i, j];
 
 
-                    if (j % 3 !=0)
+                    if (j % 3 != 0)
                     {
                         remainderDivision += B[i, j];
                     }
-
-
-
                 }
             }
+
+
+
+
+
             Console.WriteLine();
 
+            minValue = B[0, 0];
+            maxValue = B[0, 0];
             for (int i = 0; i < B.GetLength(0); i++)
             {
                 for (int j = 0; j < B.GetLength(1); j++)
                 {
-                    Console.Write(Math.Round(B[i, j],2)+"\t");
+
+                    if (minValue > B[i, j])
+                    {
+                        minValue = B[i, j];
+                    }
+
+                    if (B[i, j] > maxValue)
+                    {
+                        maxValue = B[i, j];
+                    }
+                    Console.Write(Math.Round(B[i, j], 2) + "\t");
                 }
                 Console.WriteLine();
             }
 
             Console.WriteLine();
-            Console.WriteLine($"Минимальное значение :  ячейка B[]");
-            Console.WriteLine($"Максимальный элемент :  {Math.Round(maxValue,2)}");
+            Console.WriteLine($"Минимальное значение : {Math.Round(minValue, 2)}");
+            Console.WriteLine($"Максимальный элемент : {Math.Round(maxValue, 2)}");
             Console.WriteLine($"Сумма элементов в массиве : {Math.Round(sumElement, 2)}");
-            Console.WriteLine($"Произведение элементов: ,{ Math.Round(compositionElement, 2)}");
+            Console.WriteLine($"Произведение элементов: ,{Math.Round(compositionElement, 2)}");
             Console.WriteLine($"Сумма четных элементов массива :{remainderDivision}");
 
 
         }
 
 
-        void TaskTwo()
-       {
-            
-        
-       }
+        static void TaskTwo()
+        {
+            // объявляем и заполняем массив
+            int[,] arr = new int[5, 5];
+            Random rand = new Random();
 
-        void TaskThree()
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    arr[i, j] = rand.Next(-100, 100);
+                }
+            }
+
+            Console.WriteLine("Дан массив:");
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Console.Write(arr[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+
+            // переводим массив в одномерный
+
+            Console.WriteLine("\nМассив переведен в одномерный:");
+            int[] oneDimArr = new int[25];
+            int z = 0;
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                {
+                    oneDimArr[z] = arr[i, j];
+                    z++;
+                }
+
+            foreach (int item in oneDimArr)
+            {
+                Console.Write(item + " ");
+            }
+
+            // ищем макс и мин
+            int min = oneDimArr[0];
+            int max = oneDimArr[0];
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (oneDimArr[i] < min)
+                    min = oneDimArr[i];
+                if (oneDimArr[i] > max)
+                    max = oneDimArr[i];
+            }
+
+            Console.WriteLine("\n\nМаксимальное значение " + max);
+            Console.WriteLine("Минимальное значение " + min);
+
+            // ищем индексы макс и мин
+            int indexMin=0;
+            int indexMax=0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (min == oneDimArr[i])
+                {
+                    indexMin = i;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (max == oneDimArr[i])
+                {
+                    indexMax = i;
+                    break;
+                }
+            }
+
+            // считаем сумму между мин и макс
+            int sum = 0;
+            if (indexMin < indexMax) // переменным не присвоено значение???
+            {
+
+                for (int i = indexMin; i <= indexMax; i++)
+                    sum = sum + oneDimArr[i];
+            }
+            else
+            {
+                for (int i = indexMax; i <= indexMin; i++)
+                    sum = sum + oneDimArr[i];
+            }
+
+            Console.WriteLine("min = {0}, max={1}, sum={2} ", min, max, sum);
+
+            Console.ReadLine();
+
+
+
+
+
+
+        }
+
+        const string alfabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+        static string CodeEncode(string text, int k)
+        {
+            //добавляем в алфавит маленькие буквы
+            var fullAlfabet = alfabet + alfabet.ToLower();
+            var letterQty = fullAlfabet.Length;
+            var retVal = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                var c = text[i];
+                var index = fullAlfabet.IndexOf(c);
+                if (index < 0)
+                {
+                    //если символ не найден, то добавляем его в неизменном виде
+                    retVal += c.ToString();
+                }
+                else
+                {
+                    var codeIndex = (letterQty + index + k) % letterQty;
+                    retVal += fullAlfabet[codeIndex];
+                }
+            }
+
+            return retVal;
+        }
+
+        //шифрование текста
+        static string Encrypt(string plainMessage, int key)
+            => CodeEncode(plainMessage, key);
+
+        //дешифрование текста
+        static string Decrypt(string encryptedMessage, int key)
+            => CodeEncode(encryptedMessage, -key);
+
+
+        static void TaskThree()
         {
 
+            Console.Write("Введите текст: ");
+            var message = Console.ReadLine();
+            Console.Write("Введите ключ: ");
+            var secretKey = Convert.ToInt32(Console.ReadLine());
+            var encryptedText = Encrypt(message, secretKey);
+            Console.WriteLine("Зашифрованное сообщение: {0}", encryptedText);
+            Console.WriteLine("Расшифрованное сообщение: {0}", Decrypt(encryptedText, secretKey));
+            Console.ReadLine();
         }
 
         void TaskFour()
         {
+            int[,] arr1 = new int[5, 5];
+            int[,] arr2 = new int[5, 5];
 
+            // заполняем массивы
+
+            Random rand = new Random();
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                    arr1[i, j] = rand.Next(20);
+            for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
+                    arr2[i, j] = rand.Next(20);
+
+            // выводим массивы на экран
+
+            Console.WriteLine("Массив 1:");
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Console.Write(arr1[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("\nМассив 2:");
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Console.Write(arr2[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+
+            // умножение на число
+            Console.WriteLine("\nУмножим первый массив на два:");
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Console.Write((arr1[i, j] * 2) + "\t");
+                }
+                Console.WriteLine();
+            }
+
+            // сложение матриц
+
+            Console.WriteLine("\nСумма первого и второго массивов:");
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Console.Write((arr1[i, j] + arr2[i, j]) + "\t");
+
+                }
+                Console.WriteLine();
+            }
+
+            // умножение матриц
+
+            Console.WriteLine("Произведение:");
+            int[,] arr3 = new int[5, 5];
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    for (int k = 0; k < 5; k++)
+                    {
+                        arr3[i, j] += arr1[i, k] * arr2[k, j];
+                    }
+                }
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Console.Write(arr3[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+
+            Console.ReadKey();
         }
 
         void TaskFive()
@@ -220,7 +436,21 @@ namespace HomeWork_CSharp_Two
 
         void TaskSix()
         {
-
+            string str = "today is a good day for walking. i will try to walk near the sea.";
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(str[0].ToString().ToUpper());
+            for (int i = 1; i < str.Length; i++)
+            {
+                if (char.IsLetter(str[i]) && char.IsWhiteSpace(str[i - 1]) && ".!?".IndexOf(str[i - 2]) != -1)
+                {
+                    stringBuilder.Append(str[i].ToString().ToUpper());
+                }
+                else
+                {
+                    stringBuilder.Append(str[i]);
+                }
+            }
+            Console.WriteLine(stringBuilder.ToString());
         }
 
         void TaskSeven()
@@ -234,7 +464,7 @@ namespace HomeWork_CSharp_Two
 
         static void Main(string[] args)
         {
-            TaskOne();
+            TaskThree();
         }
     }
 }

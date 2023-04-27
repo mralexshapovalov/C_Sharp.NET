@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("HomeWork_CSharp_Three")]
+[assembly: AssemblyTitle("HomeWork_CSharp_Four")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("HomeWork_CSharp_Three")]
+[assembly: AssemblyProduct("HomeWork_CSharp_Four")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID представляет идентификатор typelib, если этот проект доступен из модели COM
-[assembly: Guid("ed7e6825-15cc-4ec4-b89c-4e709a80edd9")]
+[assembly: Guid("01b4a2b8-112d-4610-88fa-50da9673aa81")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
