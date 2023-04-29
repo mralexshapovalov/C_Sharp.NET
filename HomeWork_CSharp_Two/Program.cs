@@ -152,10 +152,6 @@ namespace HomeWork_CSharp_Two
                 }
             }
 
-
-
-
-
             Console.WriteLine();
 
             minValue = B[0, 0];
@@ -188,28 +184,26 @@ namespace HomeWork_CSharp_Two
 
 
         }
-
-
         static void TaskTwo()
         {
-            // объявляем и заполняем массив
-            int[,] arr = new int[5, 5];
-            Random rand = new Random();
+            Random random = new Random();
 
-            for (int i = 0; i < 5; i++)
+            int[,] array = new int[5, 5];
+           
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    arr[i, j] = rand.Next(-100, 100);
+                    array[i, j] = random.Next(-101, 101);
                 }
             }
 
-            Console.WriteLine("Дан массив:");
-            for (int i = 0; i < 5; i++)
+            Console.WriteLine("Дан двухмерный массив,заполненый случайными числами в диапазаоне от -100 до 100");
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    Console.Write(arr[i, j] + "\t");
+                    Console.Write(array[i, j] + "\t");
                 }
                 Console.WriteLine();
             }
@@ -222,7 +216,7 @@ namespace HomeWork_CSharp_Two
             for (int i = 0; i < 5; i++)
                 for (int j = 0; j < 5; j++)
                 {
-                    oneDimArr[z] = arr[i, j];
+                    oneDimArr[z] = array[i, j];
                     z++;
                 }
 
@@ -247,9 +241,9 @@ namespace HomeWork_CSharp_Two
             Console.WriteLine("Минимальное значение " + min);
 
             // ищем индексы макс и мин
-            int indexMin=0;
-            int indexMax=0;
-            for (int i = 0; i < arr.Length; i++)
+            int indexMin = 0;
+            int indexMax = 0;
+            for (int i = 0; i < array.Length; i++)
             {
                 if (min == oneDimArr[i])
                 {
@@ -258,7 +252,7 @@ namespace HomeWork_CSharp_Two
                 }
             }
 
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 if (max == oneDimArr[i])
                 {
@@ -286,49 +280,44 @@ namespace HomeWork_CSharp_Two
             Console.ReadLine();
 
 
-
-
-
-
         }
-
-        const string alfabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-        static string CodeEncode(string text, int k)
-        {
-            //добавляем в алфавит маленькие буквы
-            var fullAlfabet = alfabet + alfabet.ToLower();
-            var letterQty = fullAlfabet.Length;
-            var retVal = "";
-            for (int i = 0; i < text.Length; i++)
-            {
-                var c = text[i];
-                var index = fullAlfabet.IndexOf(c);
-                if (index < 0)
-                {
-                    //если символ не найден, то добавляем его в неизменном виде
-                    retVal += c.ToString();
-                }
-                else
-                {
-                    var codeIndex = (letterQty + index + k) % letterQty;
-                    retVal += fullAlfabet[codeIndex];
-                }
-            }
-
-            return retVal;
-        }
-
-        //шифрование текста
-        static string Encrypt(string plainMessage, int key)
-            => CodeEncode(plainMessage, key);
-
-        //дешифрование текста
-        static string Decrypt(string encryptedMessage, int key)
-            => CodeEncode(encryptedMessage, -key);
-
-
         static void TaskThree()
         {
+            string CodeEncode(string text, int k)
+            {
+                const string alfabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+
+                //добавляем в алфавит маленькие буквы
+                var fullAlfabet = alfabet + alfabet.ToLower();
+                var letterQty = fullAlfabet.Length;
+                var retVal = "";
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    var c = text[i];
+                    var index = fullAlfabet.IndexOf(c);
+
+                    if (index < 0)
+                    {
+                        //если символ не найден, то добавляем его в неизменном виде
+                        retVal += c.ToString();
+                    }
+                    else
+                    {
+                        var codeIndex = (letterQty + index + k) % letterQty;
+                        retVal += fullAlfabet[codeIndex];
+                    }
+                }
+
+                return retVal;
+            }
+
+            //шифрование текста
+            string Encrypt(string plainMessage, int key) => CodeEncode(plainMessage, key);
+
+            //дешифрование текста
+            string Decrypt(string encryptedMessage, int key) => CodeEncode(encryptedMessage, -key);
+
 
             Console.Write("Введите текст: ");
             var message = Console.ReadLine();
@@ -339,106 +328,107 @@ namespace HomeWork_CSharp_Two
             Console.WriteLine("Расшифрованное сообщение: {0}", Decrypt(encryptedText, secretKey));
             Console.ReadLine();
         }
-
-        void TaskFour()
+        static void TaskFour()
         {
-            int[,] arr1 = new int[5, 5];
-            int[,] arr2 = new int[5, 5];
+            Random random = new Random();
+         
+            int[,] arrayOne = new int[5, 5];
+            int[,] arrayTwo = new int[5, 5];
+            int[,] arrayThree = new int[5, 5];
+           
 
-            // заполняем массивы
-
-            Random rand = new Random();
-            for (int i = 0; i < 5; i++)
-                for (int j = 0; j < 5; j++)
-                    arr1[i, j] = rand.Next(20);
-            for (int i = 0; i < 5; i++)
-                for (int j = 0; j < 5; j++)
-                    arr2[i, j] = rand.Next(20);
-
-            // выводим массивы на экран
-
-            Console.WriteLine("Массив 1:");
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < arrayOne.GetLength(0); i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < arrayOne.GetLength(1); j++)
                 {
-                    Console.Write(arr1[i, j] + "\t");
+                    arrayOne[i, j] = random.Next(1,20);
+                }
+            }
+
+            for (int i = 0; i < arrayTwo.GetLength(0); i++)
+            {
+                for (int j = 0; j < arrayTwo.GetLength(1); j++)
+                {
+                    arrayTwo[i, j] = random.Next(1, 20);
+                }
+            }
+
+            Console.WriteLine("Вывод массива:" +
+                             "\n1:");
+            for (int i = 0; i < arrayOne.GetLength(0); i++)
+            {
+                for (int j = 0; j < arrayOne.GetLength(1); j++)
+                {
+                    Console.Write(arrayOne[i, j] + "\t");
                 }
                 Console.WriteLine();
             }
 
-            Console.WriteLine("\nМассив 2:");
-            for (int i = 0; i < 5; i++)
+            Console.WriteLine("\n2:");
+            for (int i = 0; i < arrayTwo.GetLength(0); i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < arrayTwo.GetLength(1); j++)
                 {
-                    Console.Write(arr2[i, j] + "\t");
+                    Console.Write(arrayTwo[i, j] + "\t");
                 }
                 Console.WriteLine();
             }
 
-            // умножение на число
-            Console.WriteLine("\nУмножим первый массив на два:");
-
-            for (int i = 0; i < 5; i++)
+            Console.WriteLine("Умножение первого массива на 2\n");
+            for (int i = 0; i < arrayOne.GetLength(0); i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < arrayOne.GetLength(1); j++)
                 {
-                    Console.Write((arr1[i, j] * 2) + "\t");
+                    Console.Write((arrayOne[i, j] * 2) + "\t");
                 }
                 Console.WriteLine();
             }
 
-            // сложение матриц
-
+    
             Console.WriteLine("\nСумма первого и второго массивов:");
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < arrayOne.GetLength(0); i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < arrayOne.GetLength(1); j++)
                 {
-                    Console.Write((arr1[i, j] + arr2[i, j]) + "\t");
+                    Console.Write((arrayOne[i, j] + arrayTwo[i, j]) + "\t");
 
                 }
                 Console.WriteLine();
             }
 
-            // умножение матриц
-
-            Console.WriteLine("Произведение:");
-            int[,] arr3 = new int[5, 5];
-            for (int i = 0; i < 5; i++)
+            Console.WriteLine("Вывролнение произведение двух массивов:");
+            for (int i = 0; i < arrayThree.GetLength(0); i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < arrayThree.GetLength(1); j++)
                 {
-                    for (int k = 0; k < 5; k++)
+                    for (int k = 0; k < arrayThree.GetLength(2); k++)
                     {
-                        arr3[i, j] += arr1[i, k] * arr2[k, j];
+                        arrayThree[i, j] += arrayOne[i, k] * arrayTwo[k, j];
                     }
                 }
             }
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < arrayThree.GetLength(0); i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < arrayThree.GetLength(1); j++)
                 {
-                    Console.Write(arr3[i, j] + "\t");
+                    Console.Write(arrayThree[i, j] + "\t");
                 }
                 Console.WriteLine();
             }
 
-            Console.ReadKey();
         }
-
-        void TaskFive()
+        static void TaskFive()
         {
 
         }
-
-        void TaskSix()
+        static void TaskSix()
         {
             string str = "today is a good day for walking. i will try to walk near the sea.";
+
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(str[0].ToString().ToUpper());
+
             for (int i = 1; i < str.Length; i++)
             {
                 if (char.IsLetter(str[i]) && char.IsWhiteSpace(str[i - 1]) && ".!?".IndexOf(str[i - 2]) != -1)
@@ -452,16 +442,10 @@ namespace HomeWork_CSharp_Two
             }
             Console.WriteLine(stringBuilder.ToString());
         }
-
-        void TaskSeven()
+        static void TaskSeven()
         {
 
         }
-
-
-
-
-
         static void Main(string[] args)
         {
             TaskThree();
