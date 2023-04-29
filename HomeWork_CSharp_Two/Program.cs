@@ -115,7 +115,6 @@ namespace HomeWork_CSharp_Two
 
                 sumElement += A[i];
                 compositionElement *= A[i];
-
             }
 
             for (int i = 0; i < A.Length; i++)
@@ -188,6 +187,8 @@ namespace HomeWork_CSharp_Two
         {
             Random random = new Random();
 
+            int sum = 0, indexMin = 0, indexMax = 0;
+         
             int[,] array = new int[5, 5];
            
             for (int i = 0; i < array.GetLength(0); i++)
@@ -208,78 +209,83 @@ namespace HomeWork_CSharp_Two
                 Console.WriteLine();
             }
 
+            int minValue = array[0, 0];
+            int maxValue = array[0, 0];
+
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if(minValue > array[i,j] )
+                    {
+                        minValue = array[i, j];
+                    }
+                    if (array[i, j] > maxValue)
+                    {
+                        maxValue = array[i, j];
+                    }
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Минимальное значение  " + minValue);
+            Console.WriteLine("Максимальное значение " + maxValue);
+
             // переводим массив в одномерный
 
             Console.WriteLine("\nМассив переведен в одномерный:");
-            int[] oneDimArr = new int[25];
-            int z = 0;
-            for (int i = 0; i < 5; i++)
-                for (int j = 0; j < 5; j++)
+
+            List<int> arrayDimensional = new List<int>();
+    
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    oneDimArr[z] = array[i, j];
-                    z++;
+                    arrayDimensional.Add(array[i, j]);
+         
                 }
-
-            foreach (int item in oneDimArr)
-            {
-                Console.Write(item + " ");
             }
-
-            // ищем макс и мин
-            int min = oneDimArr[0];
-            int max = oneDimArr[0];
-
-            for (int i = 0; i < 10; i++)
-            {
-                if (oneDimArr[i] < min)
-                    min = oneDimArr[i];
-                if (oneDimArr[i] > max)
-                    max = oneDimArr[i];
-            }
-
-            Console.WriteLine("\n\nМаксимальное значение " + max);
-            Console.WriteLine("Минимальное значение " + min);
 
             // ищем индексы макс и мин
-            int indexMin = 0;
-            int indexMax = 0;
+
             for (int i = 0; i < array.Length; i++)
             {
-                if (min == oneDimArr[i])
+                if (minValue == arrayDimensional[i])
                 {
                     indexMin = i;
                     break;
                 }
-            }
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (max == oneDimArr[i])
+                if (maxValue == arrayDimensional[i])
                 {
                     indexMax = i;
                     break;
                 }
             }
 
-            // считаем сумму между мин и макс
-            int sum = 0;
             if (indexMin < indexMax) // переменным не присвоено значение???
             {
-
-                for (int i = indexMin; i <= indexMax; i++)
-                    sum = sum + oneDimArr[i];
+                for (int j = indexMin; j <= indexMax; j++)
+                {
+                    sum += arrayDimensional[j];
+                   
+                }
             }
+
             else
             {
-                for (int i = indexMax; i <= indexMin; i++)
-                    sum = sum + oneDimArr[i];
+
+                for (int j = indexMax; j <= indexMin; j++)
+                {
+                    sum += arrayDimensional[j];
+                  
+                }
+
+
             }
 
-            Console.WriteLine("min = {0}, max={1}, sum={2} ", min, max, sum);
 
-            Console.ReadLine();
-
-
+            Console.WriteLine("min = {0}, max= {1}, sum= {2} ", minValue, maxValue, sum);
         }
         static void TaskThree()
         {
@@ -448,7 +454,7 @@ namespace HomeWork_CSharp_Two
         }
         static void Main(string[] args)
         {
-            TaskThree();
+            TaskTwo();
         }
     }
 }
