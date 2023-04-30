@@ -180,17 +180,15 @@ namespace HomeWork_CSharp_Two
             Console.WriteLine($"Сумма элементов в массиве : {Math.Round(sumElement, 2)}");
             Console.WriteLine($"Произведение элементов: ,{Math.Round(compositionElement, 2)}");
             Console.WriteLine($"Сумма четных элементов массива :{remainderDivision}");
-
-
         }
         static void TaskTwo()
         {
             Random random = new Random();
 
             int sum = 0, indexMin = 0, indexMax = 0;
-         
+
             int[,] array = new int[5, 5];
-           
+
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
@@ -216,7 +214,7 @@ namespace HomeWork_CSharp_Two
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    if(minValue > array[i,j] )
+                    if (minValue > array[i, j])
                     {
                         minValue = array[i, j];
                     }
@@ -236,17 +234,15 @@ namespace HomeWork_CSharp_Two
             Console.WriteLine("\nМассив переведен в одномерный:");
 
             List<int> arrayDimensional = new List<int>();
-    
+
             for (int i = 0; i < array.GetLength(0); i++)
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
                     arrayDimensional.Add(array[i, j]);
-         
+
                 }
             }
-
-            // ищем индексы макс и мин
 
             for (int i = 0; i < array.Length; i++)
             {
@@ -268,22 +264,16 @@ namespace HomeWork_CSharp_Two
                 for (int j = indexMin; j <= indexMax; j++)
                 {
                     sum += arrayDimensional[j];
-                   
                 }
             }
 
             else
             {
-
                 for (int j = indexMax; j <= indexMin; j++)
                 {
                     sum += arrayDimensional[j];
-                  
                 }
-
-
             }
-
 
             Console.WriteLine("min = {0}, max= {1}, sum= {2} ", minValue, maxValue, sum);
         }
@@ -337,17 +327,17 @@ namespace HomeWork_CSharp_Two
         static void TaskFour()
         {
             Random random = new Random();
-         
+
             int[,] arrayOne = new int[5, 5];
             int[,] arrayTwo = new int[5, 5];
             int[,] arrayThree = new int[5, 5];
-           
+
 
             for (int i = 0; i < arrayOne.GetLength(0); i++)
             {
                 for (int j = 0; j < arrayOne.GetLength(1); j++)
                 {
-                    arrayOne[i, j] = random.Next(1,20);
+                    arrayOne[i, j] = random.Next(1, 20);
                 }
             }
 
@@ -390,7 +380,7 @@ namespace HomeWork_CSharp_Two
                 Console.WriteLine();
             }
 
-    
+
             Console.WriteLine("\nСумма первого и второго массивов:");
             for (int i = 0; i < arrayOne.GetLength(0); i++)
             {
@@ -454,7 +444,48 @@ namespace HomeWork_CSharp_Two
         }
         static void Main(string[] args)
         {
-            TaskTwo();
+            int value;
+
+            while (true)
+            {
+                Console.Write(
+                   "1)Задание 1\n" +
+                   "2)Задание 2\n" +
+                   "3)Задание 3\n" +
+                   "4)Задание 4\n" +
+                   "5)Задание 5\n" +
+                   "6)Задание 6\n" +
+                   "7)Задание 7\n" +
+                   "Введите число :");
+
+                switch (value = Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        TaskOne();
+                        break;
+                    case 2:
+                        TaskTwo();
+                        break;
+                    case 3:
+                        TaskThree();
+                        break;
+                    case 4:
+                        TaskFour();
+                        break;
+                    case 5:
+                        TaskFive();
+                        break;
+                    case 6:
+                        TaskSix();
+                        break;
+                    case 7:
+                        TaskSeven();
+                        break;
+                    default:
+                        Console.WriteLine("Ошибка!Неверно указн номер.Повторите снова");
+                        break;
+                }
+            }
         }
     }
 }
