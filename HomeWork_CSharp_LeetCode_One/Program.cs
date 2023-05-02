@@ -36,30 +36,73 @@ namespace HomeWork_CSharp_LeetCode_One
             return str;
         }
 
+        static public int ArraySign(int[] nums)
+        {
+            int product = 1;
+            int c=0;
+
+            for(int i = 0; i < nums.Length; i++)
+            {
+                 product*= nums[i];
+            }
+
+           
+
+            if(product==0)
+            {
+                c= 0;
+            }
+            if(product>=1)
+            {
+                c= 1;
+            }
+            if(-1 < product)
+            {
+                c= -1;
+            }
+
+
+            return c;
+
+        }
+
+
         static void Main(string[] args)
         {
-            //1 Задание
-            int[] nums = { 0, 2, 1, 5, 3, 4 };
-         
+            ////1 Задание
+            //int[] nums = { 0, 2, 1, 5, 3, 4 };
+
+            //for (int i = 0; i < nums.Length; i++)
+            //{
+            //    Console.Write(nums[i]);
+            //}
+            //Console.WriteLine();
+
+            //int[] newArr = BuildArray(nums);
+            //for (int i = 0; i < newArr.Length; i++)
+            //{
+            //    Console.Write(newArr[i]);
+            //}
+            //Console.WriteLine();
+
+            ////2 Задание
+            //string address = "1.1.1.1";
+            //Console.WriteLine(DefangIPaddr(address));
+
+            int[] nums = { -1, -2, -3, -4, 3, 2, 1 };
+
             for (int i = 0; i < nums.Length; i++)
             {
                 Console.Write(nums[i]);
             }
             Console.WriteLine();
 
-            int[] newArr = BuildArray(nums);
-            for (int i = 0; i < newArr.Length; i++)
-            {
-                Console.Write(newArr[i]);
-            }
-            Console.WriteLine();
-
-            //2 Задание
-            string address = "1.1.1.1";
-            Console.WriteLine(DefangIPaddr(address));
-
-
-
+           
+           
+            
+            Console.Write(ArraySign(nums));
+            
+        
 
         }
     }
