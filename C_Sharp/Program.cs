@@ -2,6 +2,7 @@
 //#define ARRAYS
 //#define STRING
 //#define SQRT
+//#define CLASS
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+#if CLASS
 namespace NN
 {
     class MyClass
@@ -25,13 +27,15 @@ namespace NN
     }
 }
 
+#endif
 namespace C_Sharp
 {
 
-
-
     internal class Program
     {
+
+#if CLASS
+    
 
         struct MyStruct
         {
@@ -54,6 +58,7 @@ namespace C_Sharp
             Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
         }
 
+#endif
 
 
         static void Main(string[] args)
@@ -82,8 +87,6 @@ namespace C_Sharp
             Console.WriteLine(10L.GetType());
 
 #endif
-
-
 
 #if ARRAYS
 
@@ -346,47 +349,48 @@ namespace C_Sharp
 
 #endif
 
-            int[] array = new int[20];
+            //int[] array = new int[20];
 
-            Random random = new Random();
+            //Random random = new Random();
 
-            for(int i=0;i<array.Length;i++)
-            {
-                array[i] = random.Next(0, 11);
-            }
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    array[i] = random.Next(0, 11);
+            //}
 
-            Console.WriteLine("Входной массив ->");
+            //Console.WriteLine("Входной массив ->");
 
-            for(int i=0;i<array.Length;i++)
-            {
-                Console.Write(array[i]);
-                Console.Write(" ");
-            }
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    Console.Write(array[i]);
+            //    Console.Write(" ");
+            //}
 
             //Среднее арифметическое
-            double sr=0;
-            for (int i = 0; i < array.Length; i++)
-            
-                sr+=array[i];
-            sr /= array.Length;
+            //    double sr = 0;
+            //for (int i = 0; i < array.Length; i++)
+
+            //    sr += array[i];
+            //sr /= array.Length;
 
 
-            int count = 0;
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (sr < array[i])
-                    count++;
+            //int count = 0;
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    if (sr < array[i])
+            //        count++;
 
-            }
+            //}
 
             //Нахждения процентного отношения
 
-            Single per = count / array.Length * 100;
+            //Single per = count / array.Length * 100;
 
-            Console.WriteLine($"Процентное  отношение -> {per}");
-
-               
+            //Console.WriteLine($"Процентное  отношение -> {per}");
         }
+
     }
 }
+    
+
 

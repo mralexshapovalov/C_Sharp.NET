@@ -139,10 +139,8 @@ namespace HomeWork_CSharp_Two
                 {
                     B[i, j] = random.NextDouble() * 100;
 
-
                     sumElement += B[i, j];
                     compositionElement *= B[i, j];
-
 
                     if (j % 3 != 0)
                     {
@@ -159,7 +157,6 @@ namespace HomeWork_CSharp_Two
             {
                 for (int j = 0; j < B.GetLength(1); j++)
                 {
-
                     if (minValue > B[i, j])
                     {
                         minValue = B[i, j];
@@ -228,9 +225,6 @@ namespace HomeWork_CSharp_Two
             Console.WriteLine();
             Console.WriteLine("Минимальное значение  " + minValue);
             Console.WriteLine("Максимальное значение " + maxValue);
-
-            // переводим массив в одномерный
-
             Console.WriteLine("\nМассив переведен в одномерный:");
 
             List<int> arrayDimensional = new List<int>();
@@ -240,7 +234,6 @@ namespace HomeWork_CSharp_Two
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
                     arrayDimensional.Add(array[i, j]);
-
                 }
             }
 
@@ -259,7 +252,7 @@ namespace HomeWork_CSharp_Two
                 }
             }
 
-            if (indexMin < indexMax) // переменным не присвоено значение???
+            if (indexMin < indexMax)
             {
                 for (int j = indexMin; j <= indexMax; j++)
                 {
