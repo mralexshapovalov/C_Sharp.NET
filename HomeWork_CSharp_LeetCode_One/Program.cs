@@ -19,13 +19,15 @@ namespace HomeWork_CSharp_LeetCode_One
     {
         static public int[] BuildArray(int[] nums)
         {
-
             int length = nums.Length;
-            int[] array = new int[length];
-            for (int i = 0; i < length; i++)
-                array[i] = nums[nums[i]];
-            return array;
+            int[] ans = new int[length];
 
+            for (int i = 0; i < length; i++)
+            {
+                ans[i] = nums[nums[i]];
+            }
+                
+            return ans;
         }
 
         static public string DefangIPaddr(string address)
@@ -33,8 +35,6 @@ namespace HomeWork_CSharp_LeetCode_One
             string str = address.Replace(".", "[.]");
             return str;
         }
-
-
 
         static void Main(string[] args)
         {
