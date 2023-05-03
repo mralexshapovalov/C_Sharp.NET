@@ -39,112 +39,102 @@ namespace HomeWork_CSharp_LeetCode_One
         static public int ArraySign(int[] nums)
         {
             int product=1;
-            int c =0 ;
-            int a = c;
-
+          
             for(int i = 0; i < nums.Length; i++)
             {    
                  product*= nums[i];
 
+                if (product == 0)
+                {
+
+                    product = 0;
+                }
+
+                else if (product >= 1)
+                {
+                    product = 1;
+                }
+
+                else if (product < -1)
+                {
+                    product = -1;
+                }
+
             }
 
-            if (product==0)
+            return product;
+        }
+
+        static public int SumOddLengthSubarrays(int[] arr)
+        {
+        //1588. Sum of All Odd Length Subarrays
+
+           //Input: arr = [1, 4, 2, 5, 3]
+          //Output: 58
+          //Explanation: The odd-length subarrays of arr and their sums are:
+//            [1] = 1
+//            [4] = 4
+//            [2] = 2
+//            [5] = 5
+//            [3] = 3
+//            [1, 4, 2] = 7
+//            [4, 2, 5] = 11
+//            [2, 5, 3] = 10
+//            [1, 4, 2, 5, 3] = 15
+//If we add all these together we get 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58
+            int sum = 0;
+            int sum1 = 0;
+            int sum3 = 0;
+
+            for(int i=0;i<arr.Length;i++)
             {
+                sum+=arr[i];
 
-                c = 0;
-            }
-            
                
-                //return c;
-            
-            
 
-            else if (product >= 1)
-            {
-                c = 1;
             }
-           
-                //return c;
-            
 
-            else if (product < -1)
-            {
-                c = -1;
+            for(int i=0;i<arr.Length;i++)
+            { 
+                Console.WriteLine(arr[i]);
+                sum1+=arr[i];
             }
-            a = c;
-             
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for(int j = i; j < arr.Length-1; j++)
+                {
+                    sum3 = arr[i] + arr[j];
+                   
+                }
                 
-               // return c;
+                
+               
 
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+            return sum3+sum+sum1;
             
-           
-
-            Console.WriteLine("Сумма :" + product);
-         
-            return a;
-
         }
 
 
         static void Main(string[] args)
         {
-            ////1 Задание
-            //int[] nums = { 0, 2, 1, 5, 3, 4 };
 
-            //for (int i = 0; i < nums.Length; i++)
-            //{
-            //    Console.Write(nums[i]);
-            //}
-            //Console.WriteLine();
+            int[] nums = { 1, 4, 2, 5,3 };
 
-            //int[] newArr = BuildArray(nums);
-            //for (int i = 0; i < newArr.Length; i++)
-            //{
-            //    Console.Write(newArr[i]);
-            //}
-            //Console.WriteLine();
-
-            ////2 Задание
-            //string address = "1.1.1.1";
-            //Console.WriteLine(DefangIPaddr(address));
-
-           // int[] nums = { -1, -2, -3, -4, 3, 2, 1 };
-
-           // for (int i = 0; i < nums.Length; i++)
-           // {
-           //     Console.Write(nums[i] + "\t");
-           // }
-           // Console.WriteLine();
-           // Console.WriteLine(ArraySign(nums));
-
-           //int []num = { 1, 5, 0, 2, -3 };
-
-           // for (int i = 0; i < num.Length; i++)
-           // {
-           //     Console.Write(num[i]+"\t");
-           // }
-           // Console.WriteLine();
-           // Console.WriteLine(ArraySign(num));
-
-           // int[] nu = { -1, 1, -1, 1, -1 };
-
-           // for (int i = 0; i < nu.Length; i++)
-           // {
-           //     Console.Write(nu[i] + "\t");
-           // }
-           // Console.WriteLine();
-           // Console.WriteLine(ArraySign(nu));
-           // Console.WriteLine();
-
-            int[] n = { 9, 72, 34, 29, -49, -22, -77, -17, -66, -75, -44, -30, -24 };
-
-            for (int i = 0; i < n.Length; i++)
-            {
-                Console.Write(n[i] + "\t");
-            }
-            Console.WriteLine();
-            Console.WriteLine(ArraySign(n));
-            Console.WriteLine();
+            Console.Write(SumOddLengthSubarrays(nums)+"\t");
         }
     }
 }
