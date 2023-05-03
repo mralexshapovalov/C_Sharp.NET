@@ -38,31 +38,50 @@ namespace HomeWork_CSharp_LeetCode_One
 
         static public int ArraySign(int[] nums)
         {
-            int product = 1;
-            int c=0;
+            int product=1;
+            int c =0 ;
+            int a = c;
 
             for(int i = 0; i < nums.Length; i++)
-            {
+            {    
                  product*= nums[i];
+
             }
 
+            if (product==0)
+            {
+
+                c = 0;
+            }
+            
+               
+                //return c;
+            
+            
+
+            else if (product >= 1)
+            {
+                c = 1;
+            }
+           
+                //return c;
+            
+
+            else if (product < -1)
+            {
+                c = -1;
+            }
+            a = c;
+             
+                
+               // return c;
+
+            
            
 
-            if(product==0)
-            {
-                c= 0;
-            }
-            if(product>=1)
-            {
-                c= 1;
-            }
-            if(-1 < product)
-            {
-                c= -1;
-            }
-
-
-            return c;
+            Console.WriteLine("Сумма :" + product);
+         
+            return a;
 
         }
 
@@ -89,21 +108,43 @@ namespace HomeWork_CSharp_LeetCode_One
             //string address = "1.1.1.1";
             //Console.WriteLine(DefangIPaddr(address));
 
-            int[] nums = { -1, -2, -3, -4, 3, 2, 1 };
+           // int[] nums = { -1, -2, -3, -4, 3, 2, 1 };
 
-            for (int i = 0; i < nums.Length; i++)
+           // for (int i = 0; i < nums.Length; i++)
+           // {
+           //     Console.Write(nums[i] + "\t");
+           // }
+           // Console.WriteLine();
+           // Console.WriteLine(ArraySign(nums));
+
+           //int []num = { 1, 5, 0, 2, -3 };
+
+           // for (int i = 0; i < num.Length; i++)
+           // {
+           //     Console.Write(num[i]+"\t");
+           // }
+           // Console.WriteLine();
+           // Console.WriteLine(ArraySign(num));
+
+           // int[] nu = { -1, 1, -1, 1, -1 };
+
+           // for (int i = 0; i < nu.Length; i++)
+           // {
+           //     Console.Write(nu[i] + "\t");
+           // }
+           // Console.WriteLine();
+           // Console.WriteLine(ArraySign(nu));
+           // Console.WriteLine();
+
+            int[] n = { 9, 72, 34, 29, -49, -22, -77, -17, -66, -75, -44, -30, -24 };
+
+            for (int i = 0; i < n.Length; i++)
             {
-                Console.Write(nums[i]);
+                Console.Write(n[i] + "\t");
             }
             Console.WriteLine();
-
-           
-           
-            
-            Console.Write(ArraySign(nums));
-            
-        
-
+            Console.WriteLine(ArraySign(n));
+            Console.WriteLine();
         }
     }
 }
