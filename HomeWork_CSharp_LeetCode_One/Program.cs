@@ -82,6 +82,7 @@ namespace HomeWork_CSharp_LeetCode_One
 //            [2, 5, 3] = 10
 //            [1, 4, 2, 5, 3] = 15
 //If we add all these together we get 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58
+           
             int sum = 0;
             int sum1 = 0;
             int sum3 = 0;
@@ -89,40 +90,60 @@ namespace HomeWork_CSharp_LeetCode_One
             for(int i=0;i<arr.Length;i++)
             {
                 sum+=arr[i];
-
-               
-
+ 
             }
 
             for(int i=0;i<arr.Length;i++)
             { 
-                Console.WriteLine(arr[i]);
+               
                 sum1+=arr[i];
             }
 
+            //for (int i = 0; i < arr.Length; i++)
+            //{
+            //    for(int j = i; j < arr.Length-1; j++)
+            //    {
+            //        sum3 = arr[i] + arr[j];
+
+            //    }
+
+
+            //}
+            int sum4 = 0;
+            int n = 3;
             for (int i = 0; i < arr.Length; i++)
             {
-                for(int j = i; j < arr.Length-1; j++)
-                {
-                    sum3 = arr[i] + arr[j];
-                   
-                }
+                for(int j=i;j<arr.Length;j++)
                 
+
+
+                    if (i<3)
+                    {
+
+                        if (j < n)
+                        {
+                             sum3 += arr[j];
+                        }
+                        
+                    }
+
                 
-               
+                n++;
+
+
+
 
 
 
             }
+            sum4 += sum3;
 
+            Console.WriteLine(sum4);
 
+            Console.WriteLine();
 
-
-
-
-
-
-
+            Console.WriteLine();
+            Console.WriteLine(sum3);
 
             return sum3+sum+sum1;
             
@@ -132,7 +153,7 @@ namespace HomeWork_CSharp_LeetCode_One
         static void Main(string[] args)
         {
 
-            int[] nums = { 1, 4, 2, 5,3 };
+            int[] nums = { 1, 2,3,4,5};
 
             Console.Write(SumOddLengthSubarrays(nums)+"\t");
         }
