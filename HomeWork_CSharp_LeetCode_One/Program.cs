@@ -26,7 +26,7 @@ namespace HomeWork_CSharp_LeetCode_One
             {
                 ans[i] = nums[nums[i]];
             }
-                
+
             return ans;
         }
 
@@ -38,11 +38,11 @@ namespace HomeWork_CSharp_LeetCode_One
 
         static public int ArraySign(int[] nums)
         {
-            int product=1;
-          
-            for(int i = 0; i < nums.Length; i++)
-            {    
-                 product*= nums[i];
+            int product = 1;
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                product *= nums[i];
 
                 if (product == 0)
                 {
@@ -67,36 +67,36 @@ namespace HomeWork_CSharp_LeetCode_One
 
         static public int SumOddLengthSubarrays(int[] arr)
         {
-        //1588. Sum of All Odd Length Subarrays
+            //1588. Sum of All Odd Length Subarrays
 
-           //Input: arr = [1, 4, 2, 5, 3]
-          //Output: 58
-          //Explanation: The odd-length subarrays of arr and their sums are:
-//            [1] = 1
-//            [4] = 4
-//            [2] = 2
-//            [5] = 5
-//            [3] = 3
-//            [1, 4, 2] = 7
-//            [4, 2, 5] = 11
-//            [2, 5, 3] = 10
-//            [1, 4, 2, 5, 3] = 15
-//If we add all these together we get 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58
-           
+            //Input: arr = [1, 4, 2, 5, 3]
+            //Output: 58
+            //Explanation: The odd-length subarrays of arr and their sums are:
+            //            [1] = 1
+            //            [4] = 4
+            //            [2] = 2
+            //            [5] = 5
+            //            [3] = 3
+            //            [1, 4, 2] = 7
+            //            [4, 2, 5] = 11
+            //            [2, 5, 3] = 10
+            //            [1, 4, 2, 5, 3] = 15
+            //If we add all these together we get 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58
+
             int sum = 0;
             int sum1 = 0;
             int sum3 = 0;
 
-            for(int i=0;i<arr.Length;i++)
+            for (int i = 0; i < arr.Length; i++)
             {
-                sum+=arr[i];
- 
+                sum += arr[i];
+
             }
 
-            for(int i=0;i<arr.Length;i++)
-            { 
-               
-                sum1+=arr[i];
+            for (int i = 0; i < arr.Length; i++)
+            {
+
+                sum1 += arr[i];
             }
 
             //for (int i = 0; i < arr.Length; i++)
@@ -113,21 +113,21 @@ namespace HomeWork_CSharp_LeetCode_One
             int n = 3;
             for (int i = 0; i < arr.Length; i++)
             {
-                for(int j=i;j<arr.Length;j++)
-                
+                for (int j = i; j < arr.Length; j++)
 
 
-                    if (i<3)
+
+                    if (i < 3)
                     {
 
                         if (j < n)
                         {
-                             sum3 += arr[j];
+                            sum3 += arr[j];
                         }
-                        
+
                     }
 
-                
+
                 n++;
 
 
@@ -145,17 +145,53 @@ namespace HomeWork_CSharp_LeetCode_One
             Console.WriteLine();
             Console.WriteLine(sum3);
 
-            return sum3+sum+sum1;
-            
+            return sum3 + sum + sum1;
+
+        }
+
+        static public void CreateTargetArray(int[] nums, int[] index)
+        {
+
+            int[] sum = new int[nums.Length];
+
+
+           
+          
+
+                for (int i = 0; i < nums.Length; i++)
+
+                    for (int j = i; j < index.Length; j++)
+
+                        
+                        Console.Write(sum[j]+"\t");
+                Console.WriteLine();
+                    
+                
+
+
+
+        
+
+
+
+
+
+
+
+           
         }
 
 
         static void Main(string[] args)
         {
 
-            int[] nums = { 1, 2,3,4,5};
+            int[] nums = { 0, 1, 2, 3, 4 };
+            int[] index = { 0, 1, 2, 2, 1 };
 
-            Console.Write(SumOddLengthSubarrays(nums)+"\t");
+
+            CreateTargetArray(nums, index);
+
+
         }
     }
 }
