@@ -149,37 +149,65 @@ namespace HomeWork_CSharp_LeetCode_One
 
         }
 
-        static public void CreateTargetArray(int[] nums, int[] index)
+        static void ShiftElements(int[] arr)
+        {
+            int last = arr[arr.Length - 1];
+
+            for (int i = arr.Length - 2; i >= 0; i--)
+            {
+                arr[i + 1] = arr[i];
+            }
+
+            arr[0] = last;
+        }
+
+        static public int[] CreateTargetArray(int[] nums, int[] index)
         {
 
-            int[] sum = new int[nums.Length];
+            //int[] output = new int[nums.Length];
+            //int i = 0;
+            //int temp = 0;
+
+            //foreach (int num in index)
+            //{
+            //    temp = output[num];
+            //    output[num] = nums[i];
+            //    int next = 0;
+
+            //    for (int j = num + 1; j < nums.Length; j++)
+            //    {
+            //        next = output[j];
+            //        output[j] = temp;
+            //        temp = next;
+            //    }   
 
 
+            //    i++;
+            //}
+
+            //return output;  
+
+
+
+            var target = new List<int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                target.Insert(index[i], nums[i]);
+            }
+            return target.ToArray();
+
+
+
+
+
+        }
+
+          
            
           
 
-                for (int i = 0; i < nums.Length; i++)
-
-                    for (int j = i; j < index.Length; j++)
-
-                        
-                        Console.Write(sum[j]+"\t");
-                Console.WriteLine();
-                    
-                
-
-
-
-        
-
-
-
-
-
-
-
            
-        }
+   
 
 
         static void Main(string[] args)
@@ -189,7 +217,7 @@ namespace HomeWork_CSharp_LeetCode_One
             int[] index = { 0, 1, 2, 2, 1 };
 
 
-            CreateTargetArray(nums, index);
+            Console.WriteLine(CreateTargetArray(nums, index));
 
 
         }
